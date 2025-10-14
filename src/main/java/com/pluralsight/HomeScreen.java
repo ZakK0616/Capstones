@@ -33,7 +33,7 @@ public class HomeScreen {
                     addDeposit();
                     break;
                 case ("P"):
-                    System.out.println("Make a Payment: ");
+                    addPayment();
                     break;
                 case ("L"):
                     System.out.println("Open the Ledger Screen: ");
@@ -49,7 +49,7 @@ public class HomeScreen {
     }
         private static void addDeposit(){
             try {
-                System.out.println("/n=== Add Deposit ===");
+                System.out.println("\n=== Add Deposit ===");
                 System.out.println("Enter description: ");
                 String description = scanner.nextLine();
 
@@ -71,7 +71,7 @@ public class HomeScreen {
                     }
                 }
                 LocalDateTime now = LocalDateTime.now();
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd- HH:mm:ss");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                 String dateTime = now.format(formatter);
 
                 String cvsFile = dateTime + "|" + description + "|" + vendor + "|" + amount;
@@ -84,8 +84,61 @@ public class HomeScreen {
                 System.out.println("Error catching the file");
             }
         }
+        private static void addPayment(){
+            try {
+                System.out.println("Welcome to the payment option");
+                System.out.println("Enter the description: ");
+                String description = scanner.nextLine();
 
-}
+                System.out.println("Enter the Vendor name: ");
+                String vendor = scanner.nextLine();
+
+                double amount = 0;
+                boolean validAmount = false;
+
+                while (!validAmount) {
+                    System.out.println("Enter the payment: ");
+                    String input = scanner.nextLine();
+
+                    try {
+                        amount = Double.parseDouble(input);
+                        if (amount <= 0) {
+                            System.out.println("Please enter a positive number");
+                        }
+                            else {
+                                amount = -Math.abs(amount);
+                                validAmount = true;
+                            }
+
+
+
+                    }
+                    catch (NumberFormatException e) {
+                        System.out.println("Please enter numbers only!");
+                    }
+
+                }
+                LocalDateTime now = LocalDateTime.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                String dateTime = now.format(formatter);
+
+                String cvsFile = dateTime + "|" + description + "|" + vendor + "|" + amount;
+
+                FileWriter writer = new FileWriter("transaction.cvs", true);
+                writer.write(cvsFile + "\n");
+                writer.close();
+                System.out.println("payment saved!");
+            } catch (IOException e) {
+                System.out.println("Error catching the file");
+            }
+        }
+
+
+
+
+        }
+
+
 
 
 
