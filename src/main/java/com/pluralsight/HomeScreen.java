@@ -1,5 +1,7 @@
 package com.pluralsight;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -10,7 +12,7 @@ public class HomeScreen {
 
     public static void main(String[] args) {
 
-       //Start the project
+        //Start the project
         System.out.println("Welcome to your Finance Tracker!");
 
         //Made a boolean to show the options to pick from
@@ -28,7 +30,7 @@ public class HomeScreen {
 
             switch (choice) {
                 case ("D"):
-                    System.out.println("Deposit: ");
+                    addDeposit();
                     break;
                 case ("P"):
                     System.out.println("Make a Payment: ");
@@ -42,67 +44,48 @@ public class HomeScreen {
                     break;
                 default:
 
+            }
+        }
+    }
+        private static void addDeposit(){
+            try {
+                System.out.println("/n=== Add Deposit ===");
+                System.out.println("Enter description: ");
+                String description = scanner.nextLine();
+
+                System.out.println("Enter the Vendor Name: ");
+                String vendor = scanner.nextLine();
+
+                double amount = 0;
+                boolean validAmount = false;
+
+                while (!validAmount) {
+                    System.out.println("Enter the amount ");
+                    String input = scanner.nextLine();
+
+                    try {
+                        amount = Double.parseDouble(input);
+                        validAmount = true;
+                    }catch (NumberFormatException e ){
+                        System.out.println("⚠️ Please enter numbers only (example: 123.45)");
                     }
                 }
+                LocalDateTime now = LocalDateTime.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd- HH:mm:ss");
+                String dateTime = now.format(formatter);
 
+                String cvsFile = dateTime + "|" + description + "|" + vendor + "|" + amount;
+
+                FileWriter writer = new FileWriter("transaction.cvs", true);
+                writer.write(cvsFile + "\n");
+                writer.close();
+                System.out.println("Deposit saved!");
+            } catch (IOException e) {
+                System.out.println("Error catching the file");
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//        System.out.print("Enter the deposit date (YYYY-MM-DD): ");
-//        String date = scanner.nextLine();
-//
-//        System.out.print("Enter the time (HH:MM:SS): ");
-//        String time = scanner.nextLine();
-//
-//        System.out.print("Enter a description: ");
-//        String description = scanner.nextLine();
-//
-//        System.out.print("Enter the vendor name: ");
-//        String vendor = scanner.nextLine();
-//
-//        System.out.print("Enter the amount: ");
-//        String amount = scanner.nextLine();
-//
-//        String depositLine = date + "|" + time + "|" + description + "|" + vendor + "|" + amount + "\n";
-
-//        try {
-//            FileWriter writer = new FileWriter("transactions.csv", true); // true = append mode
-//            writer.write(depositLine);
-//            writer.close();
-//            System.out.println("Deposit saved successfully!");
-//        } catch (IOException e) {
-//            System.out.println("An error occurred while saving the deposit.");
-//            e.printStackTrace();
-//        }
-
+}
 
 
 
