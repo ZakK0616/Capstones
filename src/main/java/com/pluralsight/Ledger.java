@@ -24,16 +24,16 @@ public class Ledger {
 
             switch (choice) {
                 case ("A"):
-                    loadtransactions();
+                    displayAll(loadTransactions());
                     break;
                 case ("D"):
-                    ;
+                    displayDeposits(loadTransactions());
                     break;
                 case ("P"):
-                    System.out.println("");
+                    displayPayments(loadTransactions());
                     break;
                 case ("R"):
-                    System.out.println("");
+                    openReports(scanner, loadTransactions());
                     break;
                 case ("H"):
                     viewLedger = false;
@@ -50,8 +50,8 @@ public class Ledger {
     }
 
     // 🧩 Loads transactions from the CSV file
-    private static List<transactions> loadtransactions() {
-        List<transactions> transactions = new ArrayList<>();
+    private static List<transactions> loadTransactions() {
+        List<transactions> list = new ArrayList<>();
         String fileName = "transactions.csv"; // make sure file name matches your save file
 
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
@@ -68,32 +68,32 @@ public class Ledger {
                             parts[3], // vendor
                             Double.parseDouble(parts[4]) // amount
                     );
-                    transactions.add(t);
+                    list.add(t);
                 }
             }
 
             // Show newest first (reverse order)
-            Collections.reverse(transactions);
+            Collections.reverse(list);
 
         } catch (IOException e) {
             System.out.println("⚠️ Error reading transactions file: " + e.getMessage());
         }
 
-        return transactions;
+        return list;
     }
 
     // 🧾 A) Display all transactions
-    private static void displayAll(List<transactions> transactions) {
+    private static void displayAll(List<transactions> list) {
         System.out.println("\n=== All Transactions (Newest First) ===");
-        for (transactions t : transactions) {
+        for (transactions t : list) {
             System.out.println(t);
         }
     }
 
     // 💰 D) Display only deposits (positive amounts)
-    private static void displayDeposits(List<transactions> transactions) {
+    private static void displayDeposits(List<transactions> list) {
         System.out.println("\n=== Deposits ===");
-        for (transactions t : transactions) {
+        for (transactions t : list) {
             if (t.getAmount() > 0) {
                 System.out.println(t);
             }
@@ -101,9 +101,9 @@ public class Ledger {
     }
 
     // 💸 P) Display only payments (negative amounts)
-    private static void displayPayments(List<transactions> transactions) {
+    private static void displayPayments(List<transactions> list) {
         System.out.println("\n=== Payments ===");
-        for (transactions t : transactions) {
+        for (transactions t : list) {
             if (t.getAmount() < 0) {
                 System.out.println(t);
             }
@@ -111,7 +111,7 @@ public class Ledger {
     }
 
     // 📊 R) Reports menu
-    private static void openReports(Scanner scanner, List<transactions> transactions) {
+    private static void openReports(Scanner scanner, List<transactions> list) {
         boolean inReports = true;
 
         while (inReports) {
@@ -128,21 +128,21 @@ public class Ledger {
 
             switch (reportChoice) {
                 case "1":
-                    ReportUtils.showMonthToDate(transactions);
+                    ReportUtils.showMonthToDate(list);
                     break;
                 case "2":
-                    ReportUtils.showPreviousMonth(transactions);
+                    ReportUtils.showPreviousMonth(list);
                     break;
                 case "3":
-                    ReportUtils.showYearToDate(transactions);
+                    ReportUtils.showYearToDate(list);
                     break;
                 case "4":
-                    ReportUtils.showPreviousYear(transactions);
+                    ReportUtils.showPreviousYear(list);
                     break;
                 case "5":
                     System.out.print("Enter Vendor Name: ");
                     String vendor = scanner.nextLine();
-                    ReportUtils.showByVendor(transactions, vendor);
+                    ReportUtils.showByVendor(list, vendor);
                     break;
                 case "0":
                     inReports = false;

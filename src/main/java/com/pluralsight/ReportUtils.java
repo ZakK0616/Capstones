@@ -17,6 +17,7 @@ public class ReportUtils {
             LocalDate date = LocalDate.parse(t.getDate(), DATE_FORMAT);
             if (date.getYear() == now.getYear() && date.getMonth() == now.getMonth()) {
                 System.out.println(t);
+
             }
         }
     }

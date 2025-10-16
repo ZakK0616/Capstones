@@ -74,12 +74,12 @@ public class HomeScreen {
                 }
             }
             LocalDateTime now = LocalDateTime.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            String dateTime = now.format(formatter);
+            String date = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            String time = now.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 
-            String cvsFile = dateTime + "|" + description + "|" + vendor + "|" + amount;
+            String cvsFile = date + "|" + time + "|" +   "|" + description + "|" + vendor + "|" + amount;
 
-            FileWriter writer = new FileWriter("transaction.cvs", true);
+            FileWriter writer = new FileWriter("transactions.csv", true);
             writer.write(cvsFile + "\n");
             writer.close();
             System.out.println("Deposit saved!");
@@ -120,12 +120,12 @@ public class HomeScreen {
 
             }
             LocalDateTime now = LocalDateTime.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            String dateTime = now.format(formatter);
+            String date = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            String time = now.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 
-            String cvsFile = dateTime + "|" + description + "|" + vendor + "|" + amount;
+            String cvsFile = date + "|" + time + "|" + description + "|" + vendor + "|" + amount;
 
-            FileWriter writer = new FileWriter("transaction.cvs", true);
+            FileWriter writer = new FileWriter("transactions.csv", true);
             writer.write(cvsFile + "\n");
             writer.close();
             System.out.println("payment saved!");
