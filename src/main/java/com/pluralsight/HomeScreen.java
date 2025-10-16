@@ -12,7 +12,7 @@ import java.io.IOException;
 public class HomeScreen {
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void homeScreen () {
 
         //Start the project
         System.out.println("Welcome to your Finance Tracker!");
