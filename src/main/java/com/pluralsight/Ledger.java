@@ -14,11 +14,11 @@ public class Ledger {
         System.out.println("Welcome to the Ledger!!");
         boolean viewLedger = true;
         while (viewLedger){
-            System.out.println("A) Display all Entries");
-            System.out.println("D) Show all Deposits");
-            System.out.println("P) Show all Payments");
-            System.out.println("R) Show all Reports");
-            System.out.println("H) Go Back to Home Screen");
+            System.out.println("A) Display all Entries: ");
+            System.out.println("D) Show all Deposits: ");
+            System.out.println("P) Show all Payments: ");
+            System.out.println("R) Show all Reports: ");
+            System.out.println("H) Go Back to Home Screen: ");
             System.out.print("Enter your choice: ");
             String choice = scanner.nextLine().trim().toUpperCase();
 
@@ -40,7 +40,7 @@ public class Ledger {
                     System.out.println("Exiting goodbye!! \uD83D\uDE34 \uD83D\uDE34 \uD83D\uDE34");
                     break;
                 default:
-                    System.out.println("Invalid choice...");
+                    System.out.println("Invalid choice!!!");
 
 
             }
@@ -52,7 +52,7 @@ public class Ledger {
 
     private static List<transactions> loadTransactions() {
         List<transactions> list = new ArrayList<>();
-        String fileName = "transactions.csv"; // make sure file name matches your save file
+        String fileName = "transactions.csv";
 
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
@@ -116,12 +116,12 @@ public class Ledger {
 
         while (inReports) {
             System.out.println("\n===== REPORTS MENU =====");
-            System.out.println("1) Month To Date");
-            System.out.println("2) Previous Month");
-            System.out.println("3) Year To Date");
-            System.out.println("4) Previous Year");
-            System.out.println("5) Search by Vendor");
-            System.out.println("0) Back");
+            System.out.println("1) Month To Date: ");
+            System.out.println("2) Previous Month: ");
+            System.out.println("3) Year To Date: ");
+            System.out.println("4) Previous Year: ");
+            System.out.println("5) Search by Vendor: ");
+            System.out.println("0) Back: ");
             System.out.print("Enter your choice: ");
 
             String reportChoice = scanner.nextLine().trim();
@@ -148,7 +148,7 @@ public class Ledger {
                     inReports = false;
                     break;
                 default:
-                    System.out.println("⚠️ Invalid choice, please try again.");
+                    System.out.println("⚠️ Invalid choice, please try again!!!");
             }
         }
     }

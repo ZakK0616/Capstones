@@ -15,7 +15,7 @@ public class HomeScreen {
     public static void homeScreen () {
 
         //Start the project
-        System.out.println("Welcome to your Finance Tracker!");
+        System.out.println("Welcome boss to your Gaming Buisness Account!!!");
 
         //Made a boolean to show the options to pick from
         boolean running = true;
@@ -23,10 +23,10 @@ public class HomeScreen {
         // Made a loop for the options to pick
         while (running) {
             System.out.println("\n===== HOME SCREEN =====");
-            System.out.println("D) Add Deposit");
-            System.out.println("P) Make Payment (Debit)");
-            System.out.println("L) Ledger");
-            System.out.println("X) Exit");
+            System.out.println("D) Add deposit for the day: ");
+            System.out.println("P) Make payment for bills or paying your employees (Debit): ");
+            System.out.println("L) Open ledger: ");
+            System.out.println("X) Exit: ");
             System.out.print("Enter your choice: ");
             String choice = scanner.nextLine().trim().toUpperCase();
 
@@ -63,14 +63,14 @@ public class HomeScreen {
             boolean validAmount = false;
 
             while (!validAmount) {
-                System.out.println("Enter the amount ");
+                System.out.println("Enter the amount: ");
                 String input = scanner.nextLine();
 
                 try {
                     amount = Double.parseDouble(input);
                     validAmount = true;
                 } catch (NumberFormatException e) {
-                    System.out.println(" Please enter numbers only (example: 123.45)");
+                    System.out.println(" Please enter numbers only!!! (Example: 123.45)");
                 }
             }
             LocalDateTime now = LocalDateTime.now();
@@ -81,15 +81,15 @@ public class HomeScreen {
             FileWriter writer = new FileWriter("transactions.csv", true);
             writer.write(cvsFile + "\n");
             writer.close();
-            System.out.println("Deposit saved!");
+            System.out.println("Deposit saved YAY!");
         } catch (IOException e) {
-            System.out.println("Error catching the file");
+            System.out.println("Error catching the file!");
         }
     }
 
     private static void addPayment() {
         try {
-            System.out.println("Welcome to the payment option");
+            System.out.println("Welcome to the payment option: ");
             System.out.println("Enter the description: ");
             String description = scanner.nextLine();
 
@@ -106,7 +106,7 @@ public class HomeScreen {
                 try {
                     amount = Double.parseDouble(input);
                     if (amount <= 0) {
-                        System.out.println("Please enter a positive number");
+                        System.out.println("Please enter a positive number!!!");
                     } else {
                         amount = -Math.abs(amount);
                         validAmount = true;
@@ -114,7 +114,7 @@ public class HomeScreen {
 
 
                 } catch (NumberFormatException e) {
-                    System.out.println("Please enter numbers only!");
+                    System.out.println("Please enter numbers only!!!!");
                 }
 
             }
@@ -127,9 +127,9 @@ public class HomeScreen {
             FileWriter writer = new FileWriter("transactions.csv", true);
             writer.write(cvsFile + "\n");
             writer.close();
-            System.out.println("payment saved!");
+            System.out.println("Payment saved congrats!!!!");
         } catch (IOException e) {
-            System.out.println("Error catching the file");
+            System.out.println("Error catching the file please try again!!");
         }
     }
 }
