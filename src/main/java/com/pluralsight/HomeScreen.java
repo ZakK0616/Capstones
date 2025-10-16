@@ -76,8 +76,7 @@ public class HomeScreen {
             LocalDateTime now = LocalDateTime.now();
             String date = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             String time = now.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
-
-            String cvsFile = date + "|" + time + "|" +   "|" + description + "|" + vendor + "|" + amount;
+            String cvsFile = date + "|" + time + "|"  + description + "|" + vendor + "|" + amount;
 
             FileWriter writer = new FileWriter("transactions.csv", true);
             writer.write(cvsFile + "\n");
