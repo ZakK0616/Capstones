@@ -49,7 +49,7 @@ public class Ledger {
         }
     }
 
-    // 🧩 Loads transactions from the CSV file
+
     private static List<transactions> loadTransactions() {
         List<transactions> list = new ArrayList<>();
         String fileName = "transactions.csv"; // make sure file name matches your save file
@@ -82,7 +82,7 @@ public class Ledger {
         return list;
     }
 
-    // 🧾 A) Display all transactions
+
     private static void displayAll(List<transactions> list) {
         System.out.println("\n=== All Transactions (Newest First) ===");
         for (transactions t : list) {
@@ -90,7 +90,7 @@ public class Ledger {
         }
     }
 
-    // 💰 D) Display only deposits (positive amounts)
+
     private static void displayDeposits(List<transactions> list) {
         System.out.println("\n=== Deposits ===");
         for (transactions t : list) {
@@ -100,7 +100,7 @@ public class Ledger {
         }
     }
 
-    // 💸 P) Display only payments (negative amounts)
+
     private static void displayPayments(List<transactions> list) {
         System.out.println("\n=== Payments ===");
         for (transactions t : list) {
@@ -110,7 +110,7 @@ public class Ledger {
         }
     }
 
-    // 📊 R) Reports menu
+
     private static void openReports(Scanner scanner, List<transactions> list) {
         boolean inReports = true;
 

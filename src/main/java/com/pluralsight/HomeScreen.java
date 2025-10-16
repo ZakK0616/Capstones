@@ -70,7 +70,7 @@ public class HomeScreen {
                     amount = Double.parseDouble(input);
                     validAmount = true;
                 } catch (NumberFormatException e) {
-                    System.out.println("⚠️ Please enter numbers only (example: 123.45)");
+                    System.out.println(" Please enter numbers only (example: 123.45)");
                 }
             }
             LocalDateTime now = LocalDateTime.now();

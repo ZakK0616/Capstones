@@ -61,7 +61,7 @@ public class transactions {
 
     @Override
     public String toString() {
-        return String.format("%-12s | %-8s | %-20s | %-15s | %10.2f",
-                date, time, descriptions, vendor, amount);
+        return String.format( date + "|" + time + "|" + descriptions + "|" + vendor + "|" + amount);
+
     }
 }
